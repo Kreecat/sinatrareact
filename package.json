@@ -8,11 +8,12 @@
   },
   "author": "",
   "license": "MIT",
-   "devDependencies": {
+  "devDependencies": {
     "babel-preset-react": "^6.23.0",
     "babelify": "^7.3.0",
     "browserify": "^14.1.0",
     "gulp": "^3.9.1",
+    "gulp-less": "^3.3.0",
     "gulp-watch": "^4.3.11",
     "vinyl-source-stream": "^1.1.0"
   },
@@ -20,7 +21,5 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "superagent": "^3.5.2"
-  },
-  "description": ""
+  }
 }
-
