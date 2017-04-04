@@ -52,6 +52,9 @@ class HomeController < ApplicationController
   end
 
   post '/register' do
+    username = params[:username]
+    password = params[:password]
+
     user = User.find_by(username: username)
 
     if user
