@@ -1,7 +1,6 @@
 require 'sinatra/base'
 require './controllers/ApplicationController'
 require './controllers/RestaurantController'
-require './controllers/ReviewController'
 require './controllers/UserController'
 
 require './models/RestaurantModel'
