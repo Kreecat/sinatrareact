@@ -1,7 +1,18 @@
 class HomeController < ApplicationController
 
+  #   options "*" do
+  #   response.headers["Access-Control-Allow-Methods"] = "HEAD,GET,POST,PUT,PATCH,DELETE,OPTIONS"
+
+  #   # Needed for AngularJS
+  #   response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
+  #   response['Access-Control-Allow-Origin'] = '*'
+
+  #   "cool"
+  # end
+
   get '/json' do
     response['Access-Control-Allow-Origin'] = '*'
+    content_type :json
     Restaurant.all.to_json
   end
 
