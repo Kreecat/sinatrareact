@@ -6,16 +6,16 @@ class HomeController < ApplicationController
   end
 
   get '/' do
-    if session[:logged_in]
-      @username = session[:username]
-      @restaurants = Restaurant.all
-
-      erb :home
-    else
-      @message = "Please log in."
-
-      erb :login
-    end
+    # if session[:logged_in]
+    #   @username = session[:username]
+    #   @restaurants = Restaurant.all
+    #
+    #   erb :home
+    # else
+    #
+    #   erb :login
+    # end
+    erb :landing
   end
 
   get '/login' do

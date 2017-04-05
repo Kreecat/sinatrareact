@@ -71,7 +71,7 @@ var MainComponent = React.createClass({
 				})}
 
 
-				<FormComponent onClickSubmit=(this.createRestaurant)/>
+				<FormComponent onClickSubmit={this.createRestaurant}/>
 			</div>
 			)
 	}

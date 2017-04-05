@@ -1,6 +1,68 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var React = require('react');
 
-},{}],2:[function(require,module,exports){
+var FormComponent = React.createClass({
+	displayName: 'FormComponent',
+
+	getInitialState: function () {
+		return { nameVal: '', menuVal: '', isTruck: false };
+	},
+	updateName: function (event) {
+		var state = this.state;
+		state.nameVal = event.target.value;
+		this.setState(state);
+	},
+	updateMenu: function (event) {
+		var state = this.state;
+		state.menuVal = event.target.value;
+		this.setState(state);
+	},
+	check: function (event) {
+		var state = this.state;
+		state.isTruck = !state.isTruck;
+		this.setState(state);
+	},
+	handleClick: function (event) {
+		event.preventDefault();
+		this.props.onClickSubmit(this.state.nameVal);
+		this.props.onClickSubmit(this.state.menuVal);
+		this.props.onClickSubmit(this.state.isTruck);
+		//input reset
+		var state = this.state;
+		state.nameVal = '';
+		state.menuVAl = '';
+		state.isTruck = false;
+		this.setState(state);
+	},
+	render: function () {
+		console.log(this.state, ' this is this state');
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(
+				'form',
+				null,
+				React.createElement('input', { type: 'text', placeholder: 'Name', value: this.state.nameVal, onChange: this.updateName }),
+				React.createElement(
+					'label',
+					{ 'for': 'truck' },
+					'Is it a Food Truck?'
+				),
+				React.createElement('input', { id: 'truck', type: 'checkbox', onChange: this.check, checked: this.state.isTruck, name: 'truck' }),
+				React.createElement('input', { type: 'text', placeholder: 'Menu Link', value: this.state.menuVal, onChange: this.updateMenu }),
+				React.createElement(
+					'button',
+					{ onClick: this.handleClick },
+					'Add Restaurant'
+				)
+			)
+		);
+	}
+});
+
+module.exports = FormComponent;
+
+},{"react":181}],2:[function(require,module,exports){
 console.log("hey im working");
 //getting my requires on
 var React = require('react');
@@ -12,13 +74,60 @@ var MainComponent = React.createClass({
 	displayName: 'MainComponent',
 
 	getInitialState: function () {
-		return {};
+		return { data: [], modalFix: false, idToUpdate: '' };
+	},
+	componentDidMount: function () {
+		var state = this.state;
+		var self = this;
+		request.get('').end(function (err, data) {
+			state.data = data.body;
+			self.setState(state);
+		});
+	},
+	createRestaurant: function (name, boolean, menu) {
+		var state = this.state;
+		var self = this;
+		request.post('').type('form').send({ name: name, truck: boolean, menu: menu }).end(function (err, data) {
+			console.log(data);
+			state.data = data.body;
+			self.setState(state);
+		});
+	},
+	update: function (id) {
+		var state = this.state;
+		state.modalFix = true;
+		state.idToUpdate = id;
+		this.setState(state);
+	},
+	updateResturantVal: function (name, boolean, menu) {
+		var state = this.state;
+		var self = this;
+		var objToSend = {
+			id: this.state.idToUpdate,
+			name: name,
+			truck: boolean,
+			menu: menu
+		};
+		request.patch('' + this.state.idToUpdate).type('form').send({
+			id: this.state.idToUpdate,
+			name: name,
+			truck: boolean,
+			menu: menu
+		}).end(function (err, data) {
+			console.log(data);
+			state.data = data.body;
+			self.setState(state);
+		});
 	},
 	render: function () {
+		var self = this;
 		return React.createElement(
-			'h1',
+			'div',
 			null,
-			'Hi'
+			this.state.data.map(function (item, I) {
+				return React.createElement('div', null);
+			}),
+			React.createElement(FormComponent, { onClickSubmit: this.createRestaurant })
 		);
 	}
 });

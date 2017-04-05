@@ -14,10 +14,6 @@ gulp.task('react', function(){
 		.pipe(gulp.dest('./sinatra/public/scripts/build'))
 });
 
-gulp.task('watch', function(){
-	gulp.watch(['./sinatra/public/styles/*.less'], ['compile-less']);
-});
-
 gulp.task('compile-less', function(){
 	gulp.src('./sinatra/public/styles/*.less')
 		.pipe(less())
@@ -26,6 +22,7 @@ gulp.task('compile-less', function(){
 
 gulp.task('watch', function(){
 	gulp.watch(['./client/clientReact/*.js'], ['react'])
+	gulp.watch(['./sinatra/public/styles/*.less'], ['compile-less']);
 });
 
 gulp.task('default', ['react', 'compile-less', 'watch'])
