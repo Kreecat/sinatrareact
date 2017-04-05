@@ -11,7 +11,7 @@ gulp.task('react', function(){
 		.transform('babelify', {presets: ["react"]})
 		.bundle()
 		.pipe(source('build.js'))
-		.pipe(gulp.dest('./client/scripts/build'))
+		.pipe(gulp.dest('./sinatra/public/scripts/build'))
 });
 
 gulp.task('watch', function(){
