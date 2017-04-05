@@ -12,18 +12,21 @@ var MainComponent = React.createClass({
 	componentDidMount: function(){
 		var state = this.state;
 		var self = this;
-		request.get('')
+		request.get('/home/json')
 			.end(function(err, data){
+				console.log(data)
 				state.data = data.body;
 				self.setState(state);
 			})
 	},
-	createRestaurant: function(name, boolean, menu){
+	createRestaurant: function(name, bool, menu){
 		var state = this.state;
 		var self = this;
-		request.post('')
+
+		console.log(name, bool, menu, ' this is before the ajax')
+		request.post('/restaurants')
 			.type('form')
-			.send({name: name, truck: boolean, menu: menu})
+			.send({name: name, truck: bool, menu: menu})
 			.end(function(err, data){
 				console.log(data);
 				state.data = data.body;
@@ -36,21 +39,21 @@ var MainComponent = React.createClass({
 		state.idToUpdate = id;
 		this.setState(state)
 	},
-	updateResturantVal: function(name, boolean, menu){
+	updateResturantVal: function(name, bool, menu){
 		var state = this.state;
 		var self = this;
 		var objToSend = {
 			id: this.state.idToUpdate,
 			name: name,
-			truck: boolean,
+			truck: bool,
 			menu: menu
 		}
-		request.patch('' + this.state.idToUpdate)
+		request.patch('http://localhost:9393/restaurants/' + this.state.idToUpdate)
 			.type('form')
 			.send({
 				id: this.state.idToUpdate,
 				name: name,
-				truck: boolean,
+				truck: bool,
 				menu: menu
 			})
 				.end(function(err, data){
@@ -61,16 +64,26 @@ var MainComponent = React.createClass({
 	},
 	render: function(){
 		var self = this;
-		return (
-			<div>
-				{this.state.data.map(function(item,I){
+		console.log(this.state.data, ' data')
+
+		var data = this.state.data.map(function(restaurant, i){
+			console.log(restaurant.truck, ' this is res menu')
 					return(
-						<div>
+						<div key={i}>
+							{restaurant.name}<br/>
+							{restaurant.truck === null ? null : restaurant.truck.toString()}<br/>
+							{restaurant.menu}<br/>
+							<button id="update" onClick={self.update.bind(self, restaurant.id)}>Update!</button>
 						</div>
 						)
-				})}
+				})
 
 
+
+
+		return (
+			<div>
+				{data}
 				<FormComponent onClickSubmit={this.createRestaurant}/>
 			</div>
 			)
