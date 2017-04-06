@@ -3,68 +3,6 @@ var React = require('react');
 
 var FormComponent = React.createClass({
 	displayName: 'FormComponent',
-<<<<<<< HEAD
-
-	getInitialState: function () {
-		return { nameVal: '', menuVal: '', isTruck: false };
-	},
-	updateName: function (event) {
-		var state = this.state;
-		state.nameVal = event.target.value;
-		this.setState(state);
-	},
-	updateMenu: function (event) {
-		var state = this.state;
-		state.menuVal = event.target.value;
-		this.setState(state);
-	},
-	check: function (event) {
-		var state = this.state;
-		state.isTruck = !state.isTruck;
-		this.setState(state);
-	},
-	handleClick: function (event) {
-		event.preventDefault();
-		this.props.onClickSubmit(this.state.nameVal);
-		this.props.onClickSubmit(this.state.menuVal);
-		this.props.onClickSubmit(this.state.isTruck);
-		//input reset
-		var state = this.state;
-		state.nameVal = '';
-		state.menuVAl = '';
-		state.isTruck = false;
-		this.setState(state);
-	},
-	render: function () {
-		console.log(this.state, ' this is this state');
-		return React.createElement(
-			'div',
-			null,
-			React.createElement(
-				'form',
-				null,
-				React.createElement('input', { type: 'text', placeholder: 'Name', value: this.state.nameVal, onChange: this.updateName }),
-				React.createElement(
-					'label',
-					{ 'for': 'truck' },
-					'Is it a Food Truck?'
-				),
-				React.createElement('input', { id: 'truck', type: 'checkbox', onChange: this.check, checked: this.state.isTruck, name: 'truck' }),
-				React.createElement('input', { type: 'text', placeholder: 'Menu Link', value: this.state.menuVal, onChange: this.updateMenu }),
-				React.createElement(
-					'button',
-					{ onClick: this.handleClick },
-					'Add Restaurant'
-				)
-			)
-		);
-	}
-});
-
-module.exports = FormComponent;
-
-},{"react":181}],2:[function(require,module,exports){
-=======
 
 	getInitialState: function () {
 		return { nameVal: '', menuVal: '', isTruck: false };
@@ -121,7 +59,6 @@ module.exports = FormComponent;
 module.exports = FormComponent;
 
 },{"react":184}],2:[function(require,module,exports){
->>>>>>> 76936940faee863292cc85cdaa7e66c67d5e3d91
 console.log("hey im working");
 //getting my requires on
 var React = require('react');
@@ -138,29 +75,18 @@ var MainComponent = React.createClass({
 	componentDidMount: function () {
 		var state = this.state;
 		var self = this;
-<<<<<<< HEAD
-		request.get('').end(function (err, data) {
-=======
 		request.get('/home/json').end(function (err, data) {
 			console.log(data);
->>>>>>> 76936940faee863292cc85cdaa7e66c67d5e3d91
 			state.data = data.body;
 			self.setState(state);
 		});
 	},
-<<<<<<< HEAD
-	createRestaurant: function (name, boolean, menu) {
-		var state = this.state;
-		var self = this;
-		request.post('').type('form').send({ name: name, truck: boolean, menu: menu }).end(function (err, data) {
-=======
 	createRestaurant: function (name, bool, menu) {
 		var state = this.state;
 		var self = this;
 
 		console.log(name, bool, menu, ' this is before the ajax');
 		request.post('/restaurants').type('form').send({ name: name, truck: bool, menu: menu }).end(function (err, data) {
->>>>>>> 76936940faee863292cc85cdaa7e66c67d5e3d91
 			console.log(data);
 			state.data = data.body;
 			self.setState(state);
@@ -172,25 +98,12 @@ var MainComponent = React.createClass({
 		state.idToUpdate = id;
 		this.setState(state);
 	},
-<<<<<<< HEAD
-	updateResturantVal: function (name, boolean, menu) {
-=======
 	updateResturantVal: function (name, bool, menu) {
->>>>>>> 76936940faee863292cc85cdaa7e66c67d5e3d91
 		var state = this.state;
 		var self = this;
 		var objToSend = {
 			id: this.state.idToUpdate,
 			name: name,
-<<<<<<< HEAD
-			truck: boolean,
-			menu: menu
-		};
-		request.patch('' + this.state.idToUpdate).type('form').send({
-			id: this.state.idToUpdate,
-			name: name,
-			truck: boolean,
-=======
 			truck: bool,
 			menu: menu
 		};
@@ -198,7 +111,6 @@ var MainComponent = React.createClass({
 			id: this.state.idToUpdate,
 			name: name,
 			truck: bool,
->>>>>>> 76936940faee863292cc85cdaa7e66c67d5e3d91
 			menu: menu
 		}).end(function (err, data) {
 			console.log(data);
@@ -208,14 +120,6 @@ var MainComponent = React.createClass({
 	},
 	render: function () {
 		var self = this;
-<<<<<<< HEAD
-		return React.createElement(
-			'div',
-			null,
-			this.state.data.map(function (item, I) {
-				return React.createElement('div', null);
-			}),
-=======
 		console.log(this.state.data, ' data');
 
 		var data = this.state.data.map(function (restaurant, i) {
@@ -236,13 +140,42 @@ var MainComponent = React.createClass({
 				)
 			);
 		});
-
+		{
+			this.state.modal ? React.createElement(ModalUpdate, { updateResturantVal: this.updateResturantVal }) : null;
+		}
 		return React.createElement(
 			'div',
 			null,
 			data,
->>>>>>> 76936940faee863292cc85cdaa7e66c67d5e3d91
 			React.createElement(FormComponent, { onClickSubmit: this.createRestaurant })
+		);
+	}
+});
+
+var ModalUpdate = React.createClass({
+	displayName: 'ModalUpdate',
+
+	getInitialState: function () {
+		return { updateVal: '' };
+	},
+	updateVal: function (event) {
+		var state = this.state;
+		state.updateVal = event.target.value;
+		this.setState();
+	},
+	finalVal: function () {
+		this.props.updateResturantVal(this.state.updateVal);
+	},
+	render: function () {
+		return React.createElement(
+			'div',
+			null,
+			React.createElement('input', { type: 'text', onChange: this.updateVal, value: this.state.updateVal }),
+			React.createElement(
+				'button',
+				{ onClick: this.finalVal },
+				'Submit Change!'
+			)
 		);
 	}
 });

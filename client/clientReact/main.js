@@ -77,14 +77,33 @@ var MainComponent = React.createClass({
 						</div>
 						)
 				})
-
-
-
-
+		{this.state.modal ? <ModalUpdate updateResturantVal={this.updateResturantVal}/> : null}
 		return (
 			<div>
 				{data}
 				<FormComponent onClickSubmit={this.createRestaurant}/>
+			</div>
+			)
+	}
+});
+
+var ModalUpdate = React.createClass({
+	getInitialState: function() {
+		return {updateVal: ''}
+	},
+	updateVal: function(event){
+		var state = this.state;
+		state.updateVal = event.target.value;
+		this.setState()
+	},
+	finalVal: function(){
+		this.props.updateResturantVal(this.state.updateVal)
+	},
+	render: function(){
+		return(
+			<div>
+				<input type="text" onChange={this.updateVal} value={this.state.updateVal}/>
+				<button onClick={this.finalVal}>Submit Change!</button>
 			</div>
 			)
 	}
