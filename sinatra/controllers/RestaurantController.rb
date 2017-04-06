@@ -5,6 +5,33 @@ class RestaurantController < ApplicationController
     Restaurant.all.to_json
   end
 
+  get '/:id/reviews' do 
+    response['Access-Control-Allow-Origin'] = '*'
+    content_type :json
+    id = params[:id]
+    @this_restaurant = Restaurant.find(id)
+    @reviews = @this_restaurant.reviews
+    @restaurant_with_reviews = {restaurant: @restaurant, review: @reviews}
+    @restaurant_with_reviews.to_json
+    @this_restaurant.name = params[:name]
+    @this_restaurant.truck = params[:truck]
+    @this_restaurant.menu = params[:menu]
+    @reviews = param[:review]
+    
+  end
+
+  post ':id/reviews' do
+    response['Access-Control-Allow-Origin'] = '*'
+    content_type :json
+    @this_review = Review.new
+
+    @this_review.review = params[:review]
+    @this_review.save
+    @this_review = Review.all
+    @this_review.to_json
+
+  end
+
   post '/' do
     response['Access-Control-Allow-Origin'] = '*'
     content_type :json
