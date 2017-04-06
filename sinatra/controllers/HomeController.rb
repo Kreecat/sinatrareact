@@ -30,7 +30,17 @@ class HomeController < ApplicationController
   end
 
   get '/login' do
-    erb :login
+
+    if session[:logged_in]
+      @username = session[:username]
+      @restaurants = Restaurant.all
+
+      erb :home
+    else
+
+      erb :login
+    end
+    # erb :login
   end
 
   get '/register' do
@@ -54,7 +64,7 @@ class HomeController < ApplicationController
       session[:username] = username
       session[:user_id] = user.id
 
-      redirect '/home'
+      erb :home
     else
       @message = "Login unsuccessful."
 
@@ -70,6 +80,8 @@ class HomeController < ApplicationController
 
     if user
       @message = "Username is unavailable."
+
+      erb :register
     else
       user = User.new
 
