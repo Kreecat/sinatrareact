@@ -20,20 +20,34 @@ class RestaurantController < ApplicationController
 
     @this_restaurant = Restaurant.all 
     @this_restaurant.to_json
+  
   end
 
   patch '/:id' do
     response['Access-Control-Allow-Origin'] = '*'
-    id = params[:id]
     content_type :json
-    Restaurant.find_by(id: id)
+    id = params[:id]
+   
+    @this_restaurant = Restaurant.find(id)
 
     @this_restaurant.name = params[:name]
     @this_restaurant.truck = params[:truck]
     @this_restaurant.menu = params[:menu]
 
     @this_restaurant.save
-
-    Restaurant.all.to_json
+    @this_restaurant = Restaurant.all 
+    @this_restaurant.to_json
+   
   end
+
+  delete '/:id' do
+    response['Access-Control-Allow-Origin'] = '*'
+    content_type :json
+    id = params[:id]
+    @this_restaurant = Restaurant.find(id)
+    @this_restaurant.destroy
+    @this_restaurants = Restaurant.all 
+    @this_restaurants.to_json
+  end
+
 end
