@@ -80,7 +80,7 @@ var MainComponent = React.createClass({
 				name: name,
 				truck: bool,
 				menu: menu
-				
+
 			})
 				.end(function(err, data){
 					console.log(data);
@@ -107,7 +107,7 @@ var MainComponent = React.createClass({
 							{self.state.modalFix ? <ModalComponent onClickUpdate={self.updateRestaurantVal}/> : null}
 						</div>
 					)
-				})	
+				})
 		return (
 			<div>
 				{data}
