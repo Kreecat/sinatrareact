@@ -1,3 +1,83 @@
+.homepage {
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../backgrounds/background.png');
+  background-attachment: fixed;
+  overflow: scroll;
+  position: absolute;
+  z-index: -1;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+.homepage ::-webkit-input-placeholder {
+  color: #99E265;
+}
+.homepage :-ms-input-placeholder {
+  color: #99E265;
+}
+.homepage ::-moz-placeholder {
+  color: #99E265;
+}
+.homepage :-moz-placeholder {
+  color: #99E265;
+}
+.homepage #logoutLink {
+  position: absolute;
+  z-index: 2;
+}
+.homepage div {
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+  padding-bottom: 75px;
+}
+.homepage #update {
+  background-color: #DC00D2;
+  font-family: 'Pacifico', cursive;
+  font-size: 18px;
+  border: 2px solid #99E265;
+  border-radius: 25px;
+  height: 40px;
+  width: 100px;
+  text-align: center;
+}
+.homepage form {
+  color: #99E265;
+  display: inline-block;
+  float: left;
+}
+.homepage form label {
+  float: left;
+}
+.homepage form input {
+  border: 2px solid #DC00D2;
+  border-radius: 25px;
+  height: 50px;
+  width: 20%;
+  margin-left: 70px;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+  margin-right: 20px;
+  float: left;
+}
+.homepage form button {
+  background-color: #DC00D2;
+  font-family: 'Pacifico', cursive;
+  font-size: 12px;
+  border: 2px solid #99E265;
+  border-radius: 25px;
+  height: 40px;
+  width: 100px;
+  text-align: center;
+  float: left;
+}
 .loginpage {
   display: block;
   position: absolute;
