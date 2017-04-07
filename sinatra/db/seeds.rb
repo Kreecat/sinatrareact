@@ -3,10 +3,19 @@ require './models/RestaurantModel'
 require './models/ReviewModel'
 require './models/UserModel'
 
-ActiveRecord::Base.establish_connection(
-  :adapter => 'postgresql',
-  :database => 'eatit'
-)
+db = URI.parse(ENV['DATABASE_URL'])
+
+  DB_NAME = db.path[1..-1]
+
+  ActiveRecord::Base.establish_connection(
+    :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+    :host     => db.host,
+    :port     => db.port,
+    :username => db.user,
+    :password => db.password,
+    :database => DB_NAME,
+    :encoding => 'utf8'
+  )
 
 @user = User.new
 @user.username = "admin"
@@ -74,7 +83,7 @@ ActiveRecord::Base.establish_connection(
 @restaurant10.save
 
 @review = Review.new
-@review.comments = "The Purple Pig was wonderful. Great food. Perfect for a date night!"
+@review.comments = "Bohemian House was wonderful. Great food. Perfect for a date night!"
 @review.user_id = 1
 @review.restaurant_id = 1
 @review.save
