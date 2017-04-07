@@ -9,5 +9,4 @@ require './models/UserModel'
 
 map('/') {run ApplicationController}
 map('/restaurants') {run RestaurantController}
-# map('/reviews') {run ReviewController}
 map('/home') {run HomeController}

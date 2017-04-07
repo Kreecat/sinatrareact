@@ -18,6 +18,9 @@ class ApplicationController < Sinatra::Base
     :adapter => 'postgresql',
     :database => 'eatit'
   )
+  not_found do 
+    not_found :erb
+  end
 
   set :public_dir, File.expand_path('../../public', __FILE__)
   set :views, File.expand_path('../../views', __FILE__)
