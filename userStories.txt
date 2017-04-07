@@ -1,0 +1,5 @@
+1. As a user, I want to sign up for an account, access a list of restaurants in the River North area of Chicago, and view the name of the restaurants, whether they have a food truck, the url to their website, and any user reviews of that restaurant. I want to be able to add reviews to restaurants. I want to be able to log in and log out securely. Being able to do these things will allow me to locate restaurants in my area, read reviews, and ascertain which restaurant will be ideal for me at that time.
+
+2. As an admin, I want to be able to access the database of users and restaurants and reviews, ensure that passwords are hashed and stored as such, that users must register and sign in to the site before accessing the hope page or the list of restaurants, update the database, and delete restaurants from the database.
+
+To still be implemented : search function, and pull in restaurants from an api into our database.
