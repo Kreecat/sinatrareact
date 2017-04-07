@@ -4,6 +4,8 @@
 
 [User Stories for EatIt!](userStories.txt)
 
+[Database Schema for EatIt!](DatabaseSchema.png)
+
 ## Technologies Used
   * React
   * Ruby
@@ -31,4 +33,4 @@
 
 ## Unsolved Problems
   * see User Stories for a list of things we wish to implement in the future
-  * additional issue regarding formatting of the modal 
+  * additional issue regarding formatting of the modal
