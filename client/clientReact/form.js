@@ -36,8 +36,11 @@ var FormComponent = React.createClass({
 
 				<form>
 					<input type="text" placeholder="Name" value={this.state.nameVal} onChange={this.updateName}/>
+					<br/>
 					<label htmlFor="truck">Is it a Food Truck?</label><input id="truck" type="checkbox" onChange={this.check} checked={this.state.isTruck} name="truck"/>
+					<br/>
 					<input type="text" placeholder="Menu Link" value={this.state.menuVal} onChange={this.updateMenu}/>
+					<br/>
 					<button onClick={this.handleClick}>Add Restaurant</button>
 				</form>
 

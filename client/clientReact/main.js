@@ -123,8 +123,8 @@ var MainComponent = React.createClass({
 							{restaurant.name}<br/>
 							{restaurant.truck === null ? null : restaurant.truck.toString()}<br/>
 							{restaurant.menu}<br/>
-							<button id="update" onClick={self.update.bind(self, restaurant.id)}>Update!</button>
-							<button id="delete" onClick={self.deleteRestaurant.bind(self, restaurant.id)}>deletestuff</button>
+							<button id="update" onClick={self.update.bind(self, restaurant.id)}>update</button>
+							<button id="delete" onClick={self.deleteRestaurant.bind(self, restaurant.id)}>delete</button>
 							<button id="review" onClick={self.review.bind(self, restaurant.id)}>reviews</button>
 							{self.state.modalFix ? <ModalComponent onClickUpdate={self.updateRestaurantVal}/> : null}
 							{self.state.modalComment ? <ModalReview postReview={self.postReview}/> : null}

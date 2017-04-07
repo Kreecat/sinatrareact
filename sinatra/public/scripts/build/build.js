@@ -38,13 +38,16 @@ var FormComponent = React.createClass({
 			'form',
 			null,
 			React.createElement('input', { type: 'text', placeholder: 'Name', value: this.state.nameVal, onChange: this.updateName }),
+			React.createElement('br', null),
 			React.createElement(
 				'label',
 				{ htmlFor: 'truck' },
 				'Is it a Food Truck?'
 			),
 			React.createElement('input', { id: 'truck', type: 'checkbox', onChange: this.check, checked: this.state.isTruck, name: 'truck' }),
+			React.createElement('br', null),
 			React.createElement('input', { type: 'text', placeholder: 'Menu Link', value: this.state.menuVal, onChange: this.updateMenu }),
+			React.createElement('br', null),
 			React.createElement(
 				'button',
 				{ onClick: this.handleClick },
@@ -301,12 +304,12 @@ var MainComponent = React.createClass({
 				React.createElement(
 					'button',
 					{ id: 'update', onClick: self.update.bind(self, restaurant.id) },
-					'Update!'
+					'update'
 				),
 				React.createElement(
 					'button',
 					{ id: 'delete', onClick: self.deleteRestaurant.bind(self, restaurant.id) },
-					'deletestuff'
+					'delete'
 				),
 				React.createElement(
 					'button',

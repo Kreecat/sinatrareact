@@ -1,4 +1,4 @@
--- psql -a -f migration.sql
+-- psql -a -f migrations.sql
 
 CREATE DATABASE eatit;
 

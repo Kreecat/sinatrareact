@@ -8,7 +8,7 @@ var ModalComponent = React.createClass({
 		var state = this.state;
 		state.nameVal = event.target.value
 		this.setState(state)
-	},	
+	},
 	check: function(event){
 		var state = this.state;
 		state.isTruck = !state.isTruck;
@@ -48,5 +48,3 @@ var ModalComponent = React.createClass({
 })
 
 module.exports = ModalComponent;
-
-

@@ -63,7 +63,7 @@
   text-align: center;
   margin-right: 5px;
 }
-.homepage #comment {
+.homepage #review {
   background-color: #DC00D2;
   font-family: 'Pacifico', cursive;
   font-size: 18px;
@@ -74,25 +74,26 @@
   text-align: center;
   margin-right: 5px;
 }
-.homepage form {
-  color: #99E265;
-  display: inline-block;
-  float: left;
-}
 .homepage form label {
-  float: left;
+  width: 200px;
+  color: #99E265;
+  display: inline;
+  float: none;
+  margin-left: 205px;
 }
 .homepage form input {
   border: 2px solid #DC00D2;
   border-radius: 25px;
   height: 50px;
   width: 20%;
-  margin-left: 70px;
+  margin-left: 10px;
   text-align: center;
   font-family: 'Pacifico', cursive;
   font-size: 25px;
   margin-right: 20px;
-  float: left;
+  margin-top: 10px;
+  display: inline;
+  float: none;
 }
 .homepage form button {
   background-color: #DC00D2;
@@ -103,7 +104,10 @@
   height: 40px;
   width: 100px;
   text-align: center;
-  float: left;
+  margin-bottom: 10px;
+  display: inline;
+  float: none;
+  margin-right: 13px;
 }
 .loginpage {
   display: block;
@@ -225,4 +229,43 @@
   -moz-background-size: cover;
   -webkit-background-size: cover;
   background-size: cover;
+}
+.modal {
+  background-color: #FFE900;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  max-width: 100%;
+  height: 400px;
+  max-height: 100%;
+  z-index: 1010;
+}
+.modal-guts {
+  /* cover the modal */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* no spacing needed */
+  padding: 40px;
+  /* let it scroll */
+  overflow: auto;
+}
+.modal-overlay {
+  background-color: rgba(180, 180, 180, 0.8);
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.showModal {
+  display: block;
+}
+.hideModal {
+  display: none;
 }
