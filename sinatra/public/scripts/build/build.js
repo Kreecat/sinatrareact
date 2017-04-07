@@ -278,6 +278,7 @@ var MainComponent = React.createClass({
 		}).end(function (err, data) {
 			console.log(data);
 			state.data = data.body;
+			state.modalFix = false;
 			self.setState(state);
 			console.log("success");
 		});
