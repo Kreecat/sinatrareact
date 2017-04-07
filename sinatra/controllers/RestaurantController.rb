@@ -16,7 +16,7 @@ class RestaurantController < ApplicationController
     @this_restaurant.name = params[:name]
     @this_restaurant.truck = params[:truck]
     @this_restaurant.menu = params[:menu]
-    @reviews = param[:review]
+    @reviews = params[:review]
     
   end
 
