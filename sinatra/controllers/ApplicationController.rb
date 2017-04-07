@@ -13,11 +13,21 @@ class ApplicationController < Sinatra::Base
 
 	    "cool" 
 	end
-	
+
+db = URI.parse(ENV['DATABASE_URL'])
+
+  DB_NAME = db.path[1..-1]
+
   ActiveRecord::Base.establish_connection(
-    :adapter => 'postgresql',
-    :database => 'eatit'
+    :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+    :host     => db.host,
+    :port     => db.port,
+    :username => db.user,
+    :password => db.password,
+    :database => DB_NAME,
+    :encoding => 'utf8'
   )
+   
   not_found do 
     not_found :erb
   end
